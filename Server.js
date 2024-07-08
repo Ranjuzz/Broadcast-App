@@ -1,39 +1,39 @@
 import { createServer } from 'net';
 import { createInterface } from 'readline';
 
-const serverPort =  8080; // Port for the server
+const serverPort =  7000; // Port num
 let clients = [];
 
-const atleast_n = 2; // give the atleast clients
-const atmost_n = 5; // give the atmost clients
+const atleast_n = 2; // giv atleast clients
+const atmost_n = 5; // giv atmost clients
 
 const rl = createInterface({
   input: process.stdin,
   output: process.stdout,
 });
 
+
 const server = createServer((socket) => {
   console.log('Client connected');
   clients.push(socket);
   console.log(`Number of clients: ${clients.length}`);
 
-  socket.on('end', () => {
-    clients = clients.filter(client => client !== socket);
-    console.log('Client disconnected');
-    console.log(`Number of clients: ${clients.length}`);
-  });
+      socket.on('end', () => {
+        clients = clients.filter(client => client !== socket);
+        console.log('Client disconnected');
+        console.log(`Number of clients: ${clients.length}`); });
 
-  socket.on('error', (err) => {
-    console.error(`Socket error: ${err}`);
-    clients = clients.filter(client => client !== socket);
-    console.log('A Client disconnected');
-    console.log(`Number of clients: ${clients.length}`);
-  });
+    socket.on('error', (err) => {
+      console.error(`Socket error: ${err}`);
+      clients = clients.filter(client => client !== socket);
+      console.log('A Client disconnected');
+      console.log(`Number of clients: ${clients.length}`); });
 });
+
+
 
 server.listen(serverPort, () => {
-  console.log(`Server is listening on port ${serverPort}`);
-});
+      console.log(`Server is listening on port ${serverPort}`); });
 
 server.on('error', (err) => {
   console.error(`Server error: ${err}`);

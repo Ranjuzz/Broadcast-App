@@ -1,6 +1,6 @@
 import { createConnection } from 'net';
 
-const serverPort = 8080;
+const serverPort = 7000;
 const clientName = process.argv[2] || 'Subscriber';
 
 const client = createConnection({ port: serverPort }, () => {
